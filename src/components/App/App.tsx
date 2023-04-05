@@ -5,23 +5,26 @@ import { Contact } from '../Contact/Contact';
 import { ModernNormalize } from 'emotion-modern-normalize';
 
 import { Container } from './App.styled';
+import { IContact, IState } from '../../interfaces';
 
 // import css from './../PhoneBook.module.scss';
-
-export interface IContact {
-  name: string;
-  number: string;
-  id: string;
-}
-interface IState {
-  contacts: IContact[];
-}
 
 export class App extends Component {
   state = {
     contacts: [],
     filter: '',
   };
+
+  componentDidMount() {
+    const storedContacts: string | null = localStorage.getItem('contacts');
+
+    if (storedContacts) {
+      this.setState({ contacts: JSON.parse(storedContacts) });
+    }
+  }
+  componentDidUpdate() {
+    localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  }
 
   formSubmitHandler = (data: IContact): void => {
     const copy: IState = this.state;

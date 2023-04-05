@@ -1,39 +1,35 @@
-import React, { Component } from 'react';
-import { Container } from './Contactslist.styled';
-import { BiSearchAlt2 } from 'react-icons/bi';
-import { StyledSearchIcon } from './Contactslist.styled';
+import React from 'react';
+import { Container, StyledSearchIcon } from './Contactslist.styled';
+
+import { IContactsListProps } from '../../interfaces';
 const shortid = require('shortid');
 
-interface IContactsListProps {
-  children: JSX.Element[];
-  contactsFilter: (value: string) => void;
-}
-
-export class ContactsList extends React.Component<IContactsListProps> {
-  formId = shortid.generate();
-  searchHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    this.props.contactsFilter(e.target.value);
+export const ContactsList = ({
+  contactsFilter,
+  children,
+}: IContactsListProps) => {
+  const formId = shortid.generate();
+  const searchHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    contactsFilter(e.target.value);
   };
 
-  render() {
-    return (
-      <Container>
-        <h2>Contacts</h2>
+  return (
+    <Container>
+      <h2>Contacts</h2>
 
-        <label htmlFor={this.formId}>Find contacts by name</label>
-        <div>
-          <input
-            type="text"
-            name=""
-            id={this.formId}
-            onChange={this.searchHandler}
-            placeholder="Type to find..."
-          />
-          <StyledSearchIcon />
-        </div>
+      <label htmlFor={formId}>Find contacts by name</label>
+      <div>
+        <input
+          type="text"
+          name=""
+          id={formId}
+          onChange={searchHandler}
+          placeholder="Type to find..."
+        />
+        <StyledSearchIcon />
+      </div>
 
-        <ul>{this.props.children}</ul>
-      </Container>
-    );
-  }
-}
+      <ul>{children}</ul>
+    </Container>
+  );
+};

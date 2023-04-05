@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Container } from './Contact.styled';
 import { BsTrash3 } from 'react-icons/bs';
+import { IContactProps } from '../../interfaces';
 
-interface IContactProps {
-  name: string;
-  number: string;
-  id: string;
-  deleteHandler: (id: string) => void;
-}
-
-export class Contact extends Component<IContactProps> {
+export class Contact extends React.Component<IContactProps> {
   state = {
     id: this.props.id,
   };
