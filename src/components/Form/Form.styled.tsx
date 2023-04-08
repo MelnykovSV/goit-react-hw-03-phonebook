@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { colors, animations } from '../../constants';
 
-export const Container = styled.form`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -21,7 +21,13 @@ export const Container = styled.form`
 
       border-radius: 15px;
     }
+    span {
+      display: block;
+      color: red;
+      min-height: 35px;
+    }
   }
+
   button {
     cursor: pointer;
     margin-top: 30px;
