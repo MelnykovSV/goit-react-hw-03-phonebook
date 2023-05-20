@@ -24,7 +24,8 @@ export const Container = styled.div`
     span {
       display: block;
       color: red;
-      min-height: 35px;
+      font-size: 20px;
+      min-height: 23px;
     }
   }
 
