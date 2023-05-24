@@ -26,10 +26,13 @@ export class Form extends Component<IFormProps> {
       .required('This field is required'),
   });
 
-  submitHandler = async (values: {
-    name: string;
-    number: string;
-  }): Promise<void> => {
+  submitHandler = async (
+    values: {
+      name: string;
+      number: string;
+    },
+    { resetForm }: { resetForm: () => void }
+  ): Promise<void> => {
     console.log(values);
     const isValid = await this.schema.isValid(values);
 
@@ -38,6 +41,7 @@ export class Form extends Component<IFormProps> {
 
       this.props.formSubmit(result);
     }
+    resetForm();
   };
 
   render() {
