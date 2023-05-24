@@ -3,9 +3,9 @@ export interface IContact {
   number: string;
   id: string;
 }
-
 export interface IState {
   contacts: IContact[];
+  filter: string;
 }
 
 export interface IContactProps {
@@ -16,16 +16,13 @@ export interface IContactProps {
 }
 
 export interface IContactsListProps {
-  children: JSX.Element[];
-  contactsFilter: (value: string) => void;
+  filteredContacts: IContact[];
+  contactDeleteHandler: (id: string) => void;
 }
 
 export interface IFormProps {
   formSubmit: (data: IContact) => void;
 }
-
-export interface IContact {
-  name: string;
-  number: string;
-  id: string;
+export interface IFilterProps {
+  contactsFilter: (value: string) => void;
 }
