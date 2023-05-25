@@ -39,8 +39,10 @@ export class Form extends Component<IFormProps> {
     if (isValid) {
       const result = { ...values, id: shortid.generate() };
 
-      this.props.formSubmit(result);
-      resetForm();
+      const isSuccessfull = this.props.formSubmit(result);
+      if (isSuccessfull) {
+        resetForm();
+      }
     }
   };
 

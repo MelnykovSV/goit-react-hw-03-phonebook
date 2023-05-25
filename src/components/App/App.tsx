@@ -24,15 +24,17 @@ export class App extends Component<{}, IState> {
     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
   }
 
-  formSubmitHandler = (data: IContact): void => {
+  formSubmitHandler = (data: IContact): boolean => {
     const copy: IState = this.state;
     const normalizedName = data.name.toLowerCase();
     if (
       !copy.contacts.some(item => item.name.toLowerCase() === normalizedName)
     ) {
       this.setState({ contacts: [data, ...copy.contacts] });
+      return true;
     } else {
       alert(`${data.name} is already in contacts.`);
+      return false;
     }
   };
 
