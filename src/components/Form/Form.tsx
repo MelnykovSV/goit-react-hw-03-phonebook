@@ -40,8 +40,8 @@ export class Form extends Component<IFormProps> {
       const result = { ...values, id: shortid.generate() };
 
       this.props.formSubmit(result);
+      resetForm();
     }
-    resetForm();
   };
 
   render() {
